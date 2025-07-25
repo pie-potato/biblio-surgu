@@ -1,0 +1,34 @@
+/* src/components/MosaicGrid/MosaicGrid.module.css */
+.mosaicGrid {
+    display: grid;
+    gap: var(--grid-gap);
+    /* Автоматическая высота строк */
+    grid-auto-rows: minmax(calc(150px - var(--grid-gap)), auto);
+    /* Пытаемся уплотнить сетку */
+    grid-auto-flow: dense;
+}
+
+/* Конфигурация колонок для разных типов сеток */
+.newsGrid {
+    grid-template-columns: repeat(5, 1fr); /* 3 колонки для новостей */
+}
+
+.additionsGrid {
+     grid-template-columns: repeat(4, 1fr); /* 4 колонки для поступлений */
+}
+
+/* --- Медиа-запросы для сетки --- */
+@media (max-width: 1024px) {
+    .mosaicGrid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-auto-flow: initial; /* Отключаем dense */
+    }
+    /* Сброс span классов на планшетах (управляется через Card компонент) */
+}
+
+@media (max-width: 768px) {
+    .mosaicGrid {
+       grid-template-columns: 1fr; /* Одна колонка */
+       gap: 25px;
+    }
+}

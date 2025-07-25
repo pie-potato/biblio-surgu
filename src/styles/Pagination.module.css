@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination_button {
+    margin: 20px 5px;
+    padding: 5px 12px;
+}
+
+.pagination_button.select {
+    background-color: var(--primary-blue);
+    box-shadow: var(--box-shadow-neon-blue-hover);
+    color: var(--white);
+    text-decoration: none;
+}

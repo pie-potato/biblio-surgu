@@ -1,0 +1,103 @@
+/* src/components/Button/Button.module.css */
+.btn {
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid;
+    font-size: 1rem;
+    line-height: 1.5;
+    position: relative;
+    background-color: var(--white);
+    /* Белый фон */
+    color: var(--button-color, var(--black));
+    /* Цвет текста определяется вариантом */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn:hover {
+    color: var(--white);
+    /* Белый текст при наведении */
+    text-decoration: none;
+}
+
+/* Варианты кнопок */
+.primary {
+    border-color: var(--primary-blue);
+    --button-color: var(--primary-blue);
+}
+
+.primary>* {
+    color: var(--primary-green);
+}
+
+.primary:hover {
+    background-color: var(--primary-blue);
+    box-shadow: var(--box-shadow-neon-blue-hover);
+}
+
+.primary:hover>* {
+    color: var(--accent-teal);
+    text-shadow: 0 0 6px var(--glow-teal);
+    text-decoration: none;
+}
+
+.secondary {
+    border-color: var(--primary-green);
+    --button-color: var(--primary-green);
+}
+
+.secondary>* {
+    color: var(--primary-blue);
+}
+
+.secondary:hover {
+    background-color: var(--primary-green);
+    box-shadow: var(--box-shadow-neon-green-hover);
+}
+
+.secondary:hover>* {
+    color: var(--primary-blue);
+    text-shadow: 0 0 6px var(--glow-blue);
+    text-decoration: none;
+}
+
+.accent {
+    border-color: var(--accent-teal);
+    --button-color: var(--accent-teal);
+}
+
+.accent:hover {
+    background-color: var(--accent-teal);
+    box-shadow: var(--box-shadow-neon-teal-hover);
+}
+
+/* Специфичный стиль для кнопки в слайдере (можно добавить модификатор) */
+.sliderAccent {
+    background-color: var(--accent-teal);
+    border-color: var(--accent-teal);
+    color: var(--white);
+    /* Белый текст сразу */
+}
+
+.sliderAccent:hover {
+    background-color: var(--primary-blue);
+    /* Синий фон при наведении */
+    color: var(--white);
+    border-color: var(--primary-blue);
+    box-shadow: var(--box-shadow-neon-teal-hover);
+    /* Тень остается бирюзовой */
+}
+
+/* Кнопка "Больше" */
+.more {
+    display: block;
+    width: fit-content;
+    margin: 60px auto 0 auto;
+}

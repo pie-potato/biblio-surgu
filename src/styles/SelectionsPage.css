@@ -1,0 +1,27 @@
+.subpages {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 20px 0 20px;
+    /* overflow-x: auto; */
+    flex-wrap: wrap;
+}
+
+.subpages>* {
+   padding: 0 10px 0 10px;
+}
+
+.subpage {
+    /* width: 100%; */
+    margin: 10px;
+}
+
+@media (max-width: 820px) {
+    .subpages {
+        overflow-x: auto;
+        flex-wrap: nowrap !important;
+    }
+
+    .subpage {
+        width: 100%;
+    }
+}

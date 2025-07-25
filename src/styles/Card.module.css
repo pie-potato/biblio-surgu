@@ -1,0 +1,280 @@
+/* src/components/Card/Card.module.css */
+
+/* Базовые стили карточки */
+.itemCard {
+    background-color: var(--white);
+    border-radius: var(--border-radius-base);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--box-shadow-base);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* border: 1px solid; */
+    /* Цвет устанавливается ниже */
+    overflow: hidden;
+    position: relative;
+    min-height: calc(150px - var(--grid-gap));
+    max-height: 400px;
+    /* Помощь для grid dense */
+}
+
+.noImage {
+    background: linear-gradient(90deg, var(--accent-teal) 0%, var(--primary-blue) 100%);
+}
+
+/* Стилизация рамки и тени при наведении в зависимости от типа */
+.news {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid;
+    border-image: linear-gradient(90deg, var(--accent-teal) 0%, var(--primary-blue) 100%) 1;
+}
+
+.news:hover {
+    box-shadow: var(--box-shadow-neon-green-hover);
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+}
+
+.addition {
+    border-color: var(--primary-blue);
+}
+
+.addition:hover {
+    box-shadow: var(--box-shadow-neon-blue-hover);
+    border-color: var(--primary-blue);
+    transform: translateY(-5px);
+}
+
+.event {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid;
+    border-image: linear-gradient(90deg, var(--accent-teal) 0%, var(--primary-blue) 100%) 1;
+}
+
+.event:hover {
+    box-shadow: var(--box-shadow-neon-green-hover);
+    border-color: var(--primary-green);
+    transform: translateY(-5px);
+}
+
+
+/* Стили для Grid Layout */
+.gridItemW1 {
+    grid-column: span 1;
+}
+
+.gridItemW2 {
+    grid-column: span 2;
+}
+
+.gridItemW3 {
+    grid-column: span 3;
+}
+
+.gridItemW4 {
+    grid-column: span 4;
+}
+
+.gridItemH1 {
+    grid-row: span 1;
+}
+
+.gridItemH2 {
+    grid-row: span 2;
+    min-height: calc(300px - var(--grid-gap));
+}
+
+.gridItemH3 {
+    grid-row: span 3;
+    min-height: calc(450px - var(--grid-gap));
+}
+
+/* Изображение */
+.cardImageWrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.itemImage {
+    width: 100%;
+    /* height: 180px; */
+    /* Стандартная высота */
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+
+.itemCard:hover .itemImage {
+    transform: scale(1.05);
+}
+
+/* Размеры изображений */
+.fullHeight {
+    /* Используется вместе с gridItemH2/H3 */
+    height: 100%;
+    position: relative;
+    /* top: 0; left: 0; */
+}
+
+.small {
+    height: 120px;
+}
+
+/* Контент */
+.cardContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    /* flex-grow: 1; */
+    position: relative;
+    /* bottom: 0; */
+    z-index: 2;
+}
+
+/* Контент поверх картинки */
+.overlayContent {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    color: var(--white);
+    box-sizing: border-box;
+    z-index: 3;
+    /* Выше картинки */
+}
+
+.overlayContent h3,
+.overlayContent .date,
+.overlayContent a {
+    color: var(--white) !important;
+    /* Важно для переопределения */
+    text-shadow: 1px 1px 2px var(--black);
+}
+
+.overlayContent a:hover {
+    color: var(--accent-teal) !important;
+}
+
+/* Скрываем обычный контент, если есть оверлей И картинка на всю высоту */
+.gridItemH2:has(.fullHeight):has(.overlayContent)>.cardContent:not(.overlayContent),
+.gridItemH3:has(.fullHeight):has(.overlayContent)>.cardContent:not(.overlayContent) {
+    display: none;
+}
+
+
+/* Текстовые элементы */
+.itemCard p {
+    margin-bottom: 10px;
+    color: var(--black);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.description {
+    flex-grow: 1;
+    opacity: 0.7;
+}
+
+.author,
+.dateTime,
+.location,
+.date {
+    color: var(--black);
+    opacity: 0.9;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.date i {
+    color: var(--primary-green);
+}
+
+.location strong {
+    font-weight: bold;
+}
+
+/* Ссылка */
+.cardLink {
+    margin-top: auto;
+    padding-top: 10px;
+    font-weight: 500;
+    color: var(--primary-blue);
+    /* Синяя по умолчанию */
+    align-self: flex-start;
+}
+
+.cardLink:hover {
+    color: var(--accent-orange);
+}
+
+/* Переопределяем цвет ссылки для разных карточек при необходимости */
+/* .event .cardLink { color: var(--accent-teal); } */
+
+/* Стили для карточек событий */
+.eventIcon {
+    font-size: 2.5rem;
+    color: var(--accent-teal);
+    text-shadow: none;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.eventIcon i {
+    margin-right: 0;
+}
+
+/* Убираем верхний паддинг у контента, если есть иконка */
+.event:has(.eventIcon)>.cardContent {
+    padding-top: 0;
+}
+
+.event h3 {
+    color: var(--black);
+}
+
+
+/* --- Медиа-запросы для Card --- */
+@media (max-width: 1024px) {
+
+    /* Сброс стилей для оверлея и fullHeight на планшетах */
+    .gridItemH2,
+    .gridItemH3 {
+        min-height: auto;
+    }
+
+    .fullHeight {
+        position: static;
+        height: 200px;
+    }
+
+    .overlayContent {
+        position: static;
+        background: none;
+        padding: 20px;
+        color: inherit;
+    }
+
+    .overlayContent h3,
+    .overlayContent .date,
+    .overlayContent a {
+        color: inherit !important;
+        text-shadow: none;
+    }
+
+    .overlayContent a {
+        color: var(--primary-blue) !important;
+    }
+
+    /* Показываем обычный контент */
+    .gridItemH2:has(.fullHeight):has(.overlayContent)>.cardContent:not(.overlayContent),
+    .gridItemH3:has(.fullHeight):has(.overlayContent)>.cardContent:not(.overlayContent) {
+        display: flex;
+    }
+
+    /* .itemCard {
+        max-width: 300px;
+    } */
+}

@@ -1,0 +1,121 @@
+.slider_container {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    width: 100%;
+}
+
+.slides {
+    /* position: relative; */
+    display: flex;
+    z-index: 0;
+    height: 600px;
+    pointer-events: none;
+    /* transition: 2s; */
+}
+
+.slides-swiper {
+    display: flex;
+    z-index: 0;
+    height: 600px;
+    pointer-events: none;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.prev_slide {
+    position: absolute;
+    left: 10px;
+    z-index: 100;
+    background: none;
+    border: none;
+    background-color: rgba(52, 199, 183, 0.5);
+    border-radius: 20px;
+    padding: 10px;
+    user-select: none;
+}
+
+.next_slide {
+    position: absolute;
+    right: 10px;
+    z-index: 100;
+    background: none;
+    border: none;
+    background-color: rgba(52, 199, 183, 0.5);
+    border-radius: 20px;
+    padding: 10px;
+    user-select: none;
+}
+
+.slide>img {
+    width: 100%;
+}
+
+.slide {
+    width: 100vw;
+    /* opacity: 0; */
+    /* transition: 2.5s; */
+    pointer-events: none;
+    user-select: none;
+}
+
+.slide.active {
+    /* transition: 2s; */
+    /* opacity: 1; */
+    pointer-events: none;
+    user-select: none;
+}
+
+.dots {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.dot {
+    padding: 10px;
+    margin: 5px 10px;
+    background-color: rgba(52, 199, 182, 0.5);
+    border-radius: 20px;
+}
+
+.dot.selected {
+    background-color: rgba(52, 199, 182, 1);
+}
+
+.slide-swiper {
+    display: none;
+    transition: 100%;
+}
+
+.slide-swiper-prev {
+    padding: 30px;
+    /* display: block; */
+    width: 300px;
+    transition: 2.5s;
+}
+
+.slide-swiper-active {
+    padding: 30px;
+    /* display: block; */
+    width: 600px;
+    transition: 2.5s;
+}
+
+.slide-swiper-next {
+    padding: 30px;
+    /* display: block; */
+    width: 300px;
+    transition: 2.5s;
+}
+
+.slide-swiper-active>img,
+.slide-swiper-next>img,
+.slide-swiper-prev>img {
+    width: 100%;
+}

@@ -1,0 +1,29 @@
+.files_list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.correct_format {
+    color: var(--primary-green);
+}
+
+.correct_format .check_icon {
+    opacity: 1;
+}
+
+.check_icon {
+    color: var(--primary-green);
+    opacity: 0;
+}
+
+.incorrect_format {
+    color: red
+}
+
+.form_vkr_input {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    position: absolute;
+}

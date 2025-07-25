@@ -1,0 +1,56 @@
+/* src/components/Section/Section.module.css */
+.section {
+    padding: 40px 0 20px 0;
+    /* Симметричные отступы */
+    /* БЕЛЫЙ фон для секций */
+    /* border-bottom: 1px solid; */
+    position: relative;
+    overflow: hidden;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
+}
+
+/* Убираем границу у последней секции через App.js или добавляя класс */
+/* .section:last-of-type {
+    border-bottom: none;
+} */
+
+.sectionTitle {
+    font-size: 2.1rem;
+    margin-bottom: 35px;
+    position: relative;
+    padding-bottom: 20px;
+    color: var(--black);
+}
+
+.sectionContainer {
+    background-color: var(--white);
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 30px -20px;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-green);
+    /* Зеленое подчеркивание */
+    box-shadow: 0 0 10px var(--glow-green);
+    /* Неоновая тень */
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+        margin-bottom: 40px;
+    }
+}
