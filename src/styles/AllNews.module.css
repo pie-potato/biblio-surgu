@@ -46,7 +46,7 @@
 .tags_options>* {
     cursor: pointer;
     transition: all .5s ease;
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px;
 }
 
 .tag {
@@ -66,6 +66,12 @@
     outline: none;
     transition: all .5s ease;
     position: relative;
+}
+
+.select_tags, .search_input {
+    height: 45px;
+    margin-right: 3px;
+    margin-bottom: 3px;
 }
 
 /* .pagination {

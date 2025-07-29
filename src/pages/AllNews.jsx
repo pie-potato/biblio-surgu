@@ -87,7 +87,7 @@ export default function AllNewsPage() {
             if (searchTagsTerm.length > 0) {
                 return newsTags
                     .filter(e => (
-                        tags?.get('tags')?.split(',').find(filter => e?.title === filter) === undefined) || (!tags?.get('tags')
+                        tags?.get('tags')?.split(',').find(filter => e?.title.toLowerCase() === filter.toLowerCase()) === undefined) || (!tags?.get('tags')
                         ))
                     .filter(e => e.title.includes(searchTagsTerm))
                     .map(e =>
@@ -169,7 +169,7 @@ export default function AllNewsPage() {
                     <div className={styles.select_tags}>
                         <div className={styles.search_input}>
                             {tags.get('tags')?.length > 0 && tags.get('tags').split(',').map(tag => <div className={styles.tag} key={tag}>{tag} <RemoveCircleOutlineIcon onClick={() => deleteNewsTags(tag)} /></div>)}
-                            <input value={searchTagsTerm} onChange={e => setSearchTagsTerm(e.target.value)} placeholder="Выберите направление" type="text" onFocus={() => setIsTagsOptionOpen(true)} onBlur={() => setIsTagsOptionOpen(false)} />
+                            <input value={searchTagsTerm} onChange={e => setSearchTagsTerm(e.target.value)} placeholder="Выберите направление" type="text" onFocus={() => setIsTagsOptionOpen(true)} onBlur={() => setTimeout(setIsTagsOptionOpen(false), 1000)} />
                         </div>
                         <div className={isTagsOptionOpen ? `${styles.tags_options} ${styles.open}` : styles.tags_options}>
                             {tagsFilter}

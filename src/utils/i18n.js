@@ -29,6 +29,21 @@ const resources = {
             "databases": "Databases",
             "science_journals": "Scientific journals SurGU",
             "periodic": "Periodicals",
+            "VKR": "Placement FQW",
+            "info_about_work": 'Job Information',
+            "name_diplom": 'Job name',
+            "type_diplom": 'Type of work',
+            "diplom": 'Diploma',
+            "bachelor": 'Bachelor',
+            "master": 'Master',
+            "graduate_student": "Graduate student",
+            "referral_code": "Referral code",
+            "referral_name": "Name of the destination",
+            "files_fqw": "Files FQW",
+            "fullname_author": "Fullname author",
+            "fullname_scientific_supervisor": "Fullname scientific supervisor",
+            "institute": "Institute",
+            "submit": "Submit"
         }
     },
     ru: {
@@ -57,6 +72,21 @@ const resources = {
             "databases": "Базы данных",
             "science_journals": "Научные журналы СурГУ",
             "periodic": "Переодические издания",
+            "VKR": "Размещение ВКР",
+            "info_about_work": 'Информация о работе',
+            "name_diplom": 'Название работы',
+            "type_diplom": 'Тип работы',
+            "diplom": 'Диплом',
+            "bachelor": 'Бакалавр',
+            "master": 'Магистр',
+            "graduate_student": "Аспирант",
+            "referral_code": "Код направления",
+            "referral_name": "Название направления",
+            "files_fqw": "Файлы ВКР",
+            "fullname_author": "ФИО автора",
+            "fullname_scientific_supervisor": "ФИО научного руководителя",
+            "institute": "Институт",
+            "submit": "Отправить"
         }
     }
 };

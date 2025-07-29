@@ -19,6 +19,7 @@ import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
 import StorageIcon from '@mui/icons-material/Storage';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
+import SchoolIcon from '@mui/icons-material/School';
 
 export default function Main() {
 
@@ -133,6 +134,12 @@ export default function Main() {
                         <div className={styles.basic_info_card}>
                             <NewspaperIcon fontSize="large" />
                             <div>{t('periodic')}</div>
+                        </div>
+                    </Link>
+                    <Link to="/vkr">
+                        <div className={styles.basic_info_card}>
+                            <SchoolIcon fontSize="large" />
+                            <div>{t('VKR')}</div>
                         </div>
                     </Link>
                 </div>
