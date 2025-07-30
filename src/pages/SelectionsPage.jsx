@@ -19,8 +19,6 @@ export default function SelectionsPage() {
     const fetchPageData = async () => {
         try {
             const response = await axios.get(getUrl(`/api/pages?filters[slug][$eq]=${pageId}&populate[children][sort][0]=createdAt:asc&populate[children][fields][0]=name&populate[children][fields][1]=slug`))
-            console.log(response);
-            
             setPageData(response.data.data[0])
         } catch (error) {
             console.log(error)

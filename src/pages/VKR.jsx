@@ -7,6 +7,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useLanguage } from "../context/LanguageContext";
 import { useTranslation } from "react-i18next";
+import Tooltip from '@mui/material/Tooltip';
 
 const VKR = () => {
 
@@ -32,7 +33,8 @@ const VKR = () => {
     const [fullNameAuthor, setFullNameAuthor] = useState({
         firstname: '',
         secondname: '',
-        lastname: ''
+        lastname: '',
+        email: ''
     }) // State для ФИО автора
     const [fullNameScientificSupervisor, setFullNameScientificSupervisor] = useState({
         firstname: '',
@@ -41,8 +43,17 @@ const VKR = () => {
         scientific_regalia: ''
     }) // State для ФИО научного руководителя
 
-    console.log(Object.entries(files));
+    const [tooltipFullNameAuthor, setTooltipFullNameAuthor] = useState({
+        firstname: false,
+        secondname: false,
+        lastname: false,
+    })
 
+    const [tooltipFullNameScientificSupervisor, setTooltipFullNameScientificSupervisor] = useState({
+        firstname: false,
+        secondname: false,
+        lastname: false,
+    })
 
     const [allScientificSupervisors, setAllScientificSupervisors] = useState([])
 
@@ -66,8 +77,113 @@ const VKR = () => {
         fetchAllScientificSupervisors()
     }, [])
 
+    useEffect(() => {
+        if ((fullNameAuthor.firstname.length > 0) || (fullNameAuthor.secondname.length > 0) || (fullNameAuthor.lastname.length > 0)) {
+            for (const [key, value] of Object.entries(fullNameAuthor)) {
+                switch (key) {
+                    case "firstname":
+                        if ((value.length <= 2) || (value.includes('.'))) {
+                            setTooltipFullNameAuthor(prev => ({ ...prev, firstname: true }))
+                            return;
+                        } else setTooltipFullNameAuthor(prev => ({ ...prev, firstname: false }))
+                        break;
+                    case "secondname":
+                        if ((value.length <= 2) || (value.includes('.'))) {
+                            setTooltipFullNameAuthor(prev => ({ ...prev, secondname: true }))
+                            return;
+                        } else setTooltipFullNameAuthor(prev => ({ ...prev, secondname: false }))
+                        break;
+                    case "lastname":
+                        if ((value.length <= 2) || (value.includes('.'))) {
+                            setTooltipFullNameAuthor(prev => ({ ...prev, lastname: true }))
+                            return;
+                        } else setTooltipFullNameAuthor(prev => ({ ...prev, lastname: false }))
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        if ((fullNameScientificSupervisor.firstname.length > 0) || (fullNameScientificSupervisor.secondname.length > 0) || (fullNameScientificSupervisor.lastname.length > 0)) {
+            for (const [key, value] of Object.entries(fullNameScientificSupervisor)) {
+                switch (key) {
+                    case "firstname":
+                        if ((value.length <= 2) || (value.includes('.'))) {
+                            setTooltipFullNameScientificSupervisor(prev => ({ ...prev, firstname: true }))
+                            return;
+                        } else setTooltipFullNameScientificSupervisor(prev => ({ ...prev, firstname: false }))
+                        break;
+                    case "secondname":
+                        if ((value.length <= 2) || (value.includes('.'))) {
+                            setTooltipFullNameScientificSupervisor(prev => ({ ...prev, secondname: true }))
+                            return;
+                        } else setTooltipFullNameScientificSupervisor(prev => ({ ...prev, secondname: false }))
+                        break;
+                    case "lastname":
+                        if ((value.length <= 2) || (value.includes('.'))) {
+                            setTooltipFullNameScientificSupervisor(prev => ({ ...prev, lastname: true }))
+                            return;
+                        } else setTooltipFullNameScientificSupervisor(prev => ({ ...prev, lastname: false }))
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }, [fullNameAuthor, fullNameScientificSupervisor])
+
     const submitVKR = async (event) => {
         event.preventDefault();
+
+        for (const [key, value] of Object.entries(fullNameAuthor)) {
+            switch (key) {
+                case "firstname":
+                    if ((value.length <= 2) || (value.includes('.'))) {
+                        setTooltipFullNameAuthor(prev => ({ ...prev, firstname: true }))
+                        return;
+                    }
+                    break;
+                case "secondname":
+                    if ((value.length <= 2) || (value.includes('.'))) {
+                        setTooltipFullNameAuthor(prev => ({ ...prev, secondname: true }))
+                        return;
+                    }
+                    break;
+                case "lastname":
+                    if ((value.length <= 2) || (value.includes('.'))) {
+                        setTooltipFullNameAuthor(prev => ({ ...prev, lastname: true }))
+                        return;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        for (const [key, value] of Object.entries(fullNameScientificSupervisor)) {
+            switch (key) {
+                case "firstname":
+                    if ((value.length <= 2) || (value.includes('.'))) {
+                        setTooltipFullNameScientificSupervisor(prev => ({ ...prev, firstname: true }))
+                        return;
+                    }
+                    break;
+                case "secondname":
+                    if ((value.length <= 2) || (value.includes('.'))) {
+                        setTooltipFullNameScientificSupervisor(prev => ({ ...prev, secondname: true }))
+                        return;
+                    }
+                    break;
+                case "lastname":
+                    if ((value.length <= 2) || (value.includes('.'))) {
+                        setTooltipFullNameScientificSupervisor(prev => ({ ...prev, lastname: true }))
+                        return;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
         const formData = new FormData();
 
@@ -100,8 +216,7 @@ const VKR = () => {
                 throw new Error('Network response was not ok');
             }
 
-            const result = await response.json();
-            console.log('Success:', result);
+            await response.json();
             alert('Данные успешно отправлены!');
         } catch (error) {
             console.error('Error:', error);
@@ -117,9 +232,6 @@ const VKR = () => {
             setFiles(prevFiles => ({ ...prevFiles, [fileName]: 'Incorrect format' }))
         }
     }
-
-    console.log(files);
-
 
     const filesListClass = (fileName) => {
         if (files[fileName] === 'Incorrect format') { return styles.incorrect_format }
@@ -160,7 +272,7 @@ const VKR = () => {
                             </li>
                             <li>
                                 <label htmlFor="task_sheet" className={filesListClass('task_sheet')}>
-                                    <div>Лист с заданием на ВКР</div>
+                                    <div>Лист с заданием на ВКР (при наличии)</div>
                                     <input className={styles.file_input} type="file" name="task_sheet" id="task_sheet" onChange={event => uploadFile(event, 'task_sheet')} />
                                     <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                     <CheckBoxIcon className={styles.check_icon} />
@@ -220,17 +332,84 @@ const VKR = () => {
                 <div>
                     <h1>{t('fullname_author')}</h1>
                     <div>
-                        <input className={styles.input} type="text" required placeholder="Фамилия" value={fullNameAuthor.secondname} onChange={e => setFullNameAuthor(prev => ({ ...prev, secondname: e.target.value }))} />
-                        <input className={styles.input} type="text" required placeholder="Имя" value={fullNameAuthor.firstname} onChange={e => setFullNameAuthor(prev => ({ ...prev, firstname: e.target.value }))} />
-                        <input className={styles.input} type="text" required placeholder="Отчество" value={fullNameAuthor.lastname} onChange={e => setFullNameAuthor(prev => ({ ...prev, lastname: e.target.value }))} />
+                        <Tooltip
+                            classes={{
+                                tooltip: styles.tooltip,
+                                arrow: styles.arrow_tooltip
+                            }}
+                            open={tooltipFullNameAuthor.secondname}
+                            placement="bottom"
+                            title="Пожалуйста, введите полноую фамилию, а не инициалы"
+                            arrow
+                        >
+                            <input className={tooltipFullNameAuthor.secondname ? [styles.input, styles.not_valid] : styles.input} type="text" required placeholder="Фамилия" value={fullNameAuthor.secondname} onChange={e => setFullNameAuthor(prev => ({ ...prev, secondname: e.target.value }))} />
+                        </Tooltip>
+                        <Tooltip
+                            classes={{
+                                tooltip: styles.tooltip,
+                                arrow: styles.arrow_tooltip
+                            }}
+                            open={tooltipFullNameAuthor.firstname}
+                            placement="bottom"
+                            title="Пожалуйста, введите полное имя, а не инициалы"
+                            arrow
+                        >
+                            <input className={tooltipFullNameAuthor.firstname ? [styles.input, styles.not_valid] : styles.input} type="text" required placeholder="Имя" value={fullNameAuthor.firstname} onChange={e => setFullNameAuthor(prev => ({ ...prev, firstname: e.target.value }))} />
+                        </Tooltip>
+                        <Tooltip
+                            classes={{
+                                tooltip: styles.tooltip,
+                                arrow: styles.arrow_tooltip
+                            }}
+                            open={tooltipFullNameAuthor.lastname}
+                            placement="bottom"
+                            title="Пожалуйста, введите полное отчество, а не инициалы"
+                            arrow
+                        >
+                            <input className={tooltipFullNameAuthor.lastname ? [styles.input, styles.not_valid] : styles.input} type="text" required placeholder="Отчество" value={fullNameAuthor.lastname} onChange={e => setFullNameAuthor(prev => ({ ...prev, lastname: e.target.value }))} />
+                        </Tooltip>
+                        <input className={styles.input} type="email" required placeholder="Адрес электнной почты для обратной связи" value={fullNameAuthor.email} onChange={e => setFullNameAuthor(prev => ({ ...prev, email: e.target.value }))} />
                     </div>
                 </div>
                 <div>
                     <h1>{t('fullname_scientific_supervisor')}</h1>
                     <div>
-                        <input className={styles.input} type="text" required placeholder="Фамилия" value={fullNameScientificSupervisor.secondname} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, secondname: e.target.value }))} />
-                        <input className={styles.input} type="text" required placeholder="Имя" value={fullNameScientificSupervisor.firstname} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, firstname: e.target.value }))} />
-                        <input className={styles.input} type="text" required placeholder="Отчество" value={fullNameScientificSupervisor.lastname} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, lastname: e.target.value }))} />
+                        <Tooltip
+                            classes={{
+                                tooltip: styles.tooltip,
+                                arrow: styles.arrow_tooltip
+                            }}
+                            open={tooltipFullNameScientificSupervisor.secondname}
+                            placement="bottom"
+                            title="Пожалуйста, введите полное отчество, а не инициалы"
+                            arrow
+                        >
+                            <input className={tooltipFullNameScientificSupervisor.secondname ? [styles.input, styles.not_valid] : styles.input} type="text" required placeholder="Фамилия" value={fullNameScientificSupervisor.secondname} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, secondname: e.target.value }))} />
+                        </Tooltip>
+                        <Tooltip
+                            classes={{
+                                tooltip: styles.tooltip,
+                                arrow: styles.arrow_tooltip
+                            }}
+                            open={tooltipFullNameScientificSupervisor.firstname}
+                            placement="bottom"
+                            title="Пожалуйста, введите полное отчество, а не инициалы"
+                            arrow
+                        >
+                            <input className={tooltipFullNameScientificSupervisor.firstname ? [styles.input, styles.not_valid] : styles.input} type="text" required placeholder="Имя" value={fullNameScientificSupervisor.firstname} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, firstname: e.target.value }))} />
+                        </Tooltip>
+                        <Tooltip
+                            classes={{
+                                tooltip: styles.tooltip,
+                                arrow: styles.arrow_tooltip
+                            }}
+                            open={tooltipFullNameScientificSupervisor.lastname}
+                            placement="bottom"
+                            title="Пожалуйста, введите полное отчество, а не инициалы"
+                            arrow
+                        >
+                            <input className={tooltipFullNameScientificSupervisor.lastname ? [styles.input, styles.not_valid] : styles.input} type="text" required placeholder="Отчество" value={fullNameScientificSupervisor.lastname} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, lastname: e.target.value }))} />
+                        </Tooltip>
                         <input className={styles.input} type="text" required placeholder="Научная степень" value={fullNameScientificSupervisor.scientific_regalia} onChange={e => setFullNameScientificSupervisor(prev => ({ ...prev, scientific_regalia: e.target.value }))} />
                     </div>
                 </div>

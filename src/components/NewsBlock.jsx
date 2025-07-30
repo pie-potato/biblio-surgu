@@ -16,7 +16,6 @@ const fetchNews = async (setNews) => {
 export default function NewsBlock() {
 
     const [news, setNews] = useState(null)
-    console.log(news);
 
     useEffect(() => {
         fetchNews(setNews)

@@ -16,7 +16,6 @@ export default function Events() {
     const {getUrl} = useFetch()    
     const {language} = useLanguage()
     const [t] = useTranslation()
-console.log(events);
 
     const fetchEvents = async () => {
         try {

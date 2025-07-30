@@ -15,6 +15,11 @@
     margin: 10px;
 }
 
+.page_content > div {
+    width: 80%;
+    padding: 10px 40px;
+}
+
 @media (max-width: 820px) {
     .subpages {
         overflow-x: auto;
