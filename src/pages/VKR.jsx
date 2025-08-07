@@ -278,7 +278,7 @@ const VKR = () => {
                             <option value="">{t('type_diplom')}</option>
                             <option value="диломная работа">{t('diplom')}</option>
                             <option value="бакалаврская работа">{t('bachelor')}</option>
-                            <option value="магистерская дисертация">{t('master')}</option>
+                            <option value="магистерская диссертация">{t('master')}</option>
                             <option value="научный доклад об основных результатах подготовленной научно-квалификационной работы (диссертации)">{t('graduate_student')}</option>
                         </select>
                         <input className={styles.input} type="text" required placeholder={t('referral_code')} value={referralCode} onChange={e => setReferralCode(e.target.value)} />
@@ -352,7 +352,7 @@ const VKR = () => {
                                 }
                                 <li>
                                     <label htmlFor="personal_statement" className={filesListClass('personal_statement')}>
-                                        <div>Личное заявление обучающегося о размещении ВКР в ЭБ СурГУ</div>
+                                        <div>Личное заявление обучающегося о размещении {typeDiplomа === "научный доклад об основных результатах подготовленной научно-квалификационной работы (диссертации)" ? 'НКР': "ВКР"} в ЭБ СурГУ</div>
                                         <input className={styles.file_input} required type="file" name="personal_statement" id="personal_statement" onChange={event => uploadFile(event, 'personal_statement')} />
                                         <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                         <CheckBoxIcon className={styles.check_icon} />
@@ -384,7 +384,7 @@ const VKR = () => {
                                 }
                                 <li>
                                     <label htmlFor="departments_decision" className={filesListClass('departments_decision')}>
-                                        <div>Решение кафедры о возможности размещения ВКР в ЭБ (с полным текстом или с изъятием содержательной части работы)</div>
+                                        <div>Решение кафедры о возможности размещения {typeDiplomа === "научный доклад об основных результатах подготовленной научно-квалификационной работы (диссертации)" ? 'НКР': "ВКР"} в ЭБ (с полным текстом или с изъятием содержательной части работы)</div>
                                         <input className={styles.file_input} required type="file" name="departments_decision" id="departments_decision" onChange={event => uploadFile(event, 'departments_decision')} />
                                         <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                         <CheckBoxIcon className={styles.check_icon} />
@@ -492,6 +492,9 @@ const VKR = () => {
                                                         onChange={event => setFullNameScientificSupervisor(prev => prev.map((value, i) => i === index ? { ...value, [e]: event.target.value } : value))}
                                                     />
                                                 </Tooltip>)}
+                                        <input
+                                            className={styles.input} type="text" placeholder="Ученая степень, звание, должность" value={fullNameScientificSupervisor[index].scientific_regalia} onChange={e => setFullNameScientificSupervisor(prev => prev.map((value, i) => i === index ? { ...value, scientific_regalia: e.target.value } : value))}
+                                        />
                                     </div>)
                                 }
 
