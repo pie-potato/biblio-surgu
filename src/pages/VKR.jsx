@@ -300,10 +300,22 @@ const VKR = () => {
                                         <CheckBoxIcon className={styles.check_icon} />
                                     </label>
                                 </li>
+                                {typeDiplomа !== "научный доклад об основных результатах подготовленной научно-квалификационной работы (диссертации)"
+                                    &&
+                                    <li>
+                                        <label htmlFor="task_sheet" className={filesListClass('task_sheet')}>
+                                            <div>Лист с заданием на ВКР (при наличии)</div>
+                                            <input className={styles.file_input} type="file" name="task_sheet" id="task_sheet" onChange={event => uploadFile(event, 'task_sheet')} />
+                                            <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
+                                            <CheckBoxIcon className={styles.check_icon} />
+                                        </label>
+                                    </li>
+                                }
+
                                 <li>
-                                    <label htmlFor="task_sheet" className={filesListClass('task_sheet')}>
-                                        <div>Лист с заданием на ВКР (при наличии)</div>
-                                        <input className={styles.file_input} type="file" name="task_sheet" id="task_sheet" onChange={event => uploadFile(event, 'task_sheet')} />
+                                    <label htmlFor="supervisor_review" className={filesListClass('supervisor_review')}>
+                                        <div>Отзыв научного руководителя</div>
+                                        <input className={styles.file_input} required type="file" name="supervisor_review" id="supervisor_review" onChange={event => uploadFile(event, 'supervisor_review')} />
                                         <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                         <CheckBoxIcon className={styles.check_icon} />
                                     </label>
@@ -312,17 +324,17 @@ const VKR = () => {
                                     ?
                                     <>
                                         <li>
-                                            <label htmlFor="supervisor_review_1" className={filesListClass('supervisor_review_1')}>
-                                                <div>Отзыв научного руководителя 1</div>
-                                                <input className={styles.file_input} required type="file" name="supervisor_review_1" id="supervisor_review_1" onChange={event => uploadFile(event, 'supervisor_review_1')} />
+                                            <label htmlFor="review" className={filesListClass('review')}>
+                                                <div>Рецензия 1</div>
+                                                <input className={styles.file_input} required type="file" name="review" id="review" onChange={event => uploadFile(event, 'review')} />
                                                 <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                                 <CheckBoxIcon className={styles.check_icon} />
                                             </label>
                                         </li>
                                         <li>
-                                            <label htmlFor="supervisor_review_2" className={filesListClass('supervisor_review_2')}>
-                                                <div>Отзыв научного руководителя 2</div>
-                                                <input className={styles.file_input} required type="file" name="supervisor_review_2" id="supervisor_review_2" onChange={event => uploadFile(event, 'supervisor_review_2')} />
+                                            <label htmlFor="review" className={filesListClass('review')}>
+                                                <div>Рецензия 2</div>
+                                                <input className={styles.file_input} required type="file" name="review" id="review" onChange={event => uploadFile(event, 'review')} />
                                                 <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                                 <CheckBoxIcon className={styles.check_icon} />
                                             </label>
@@ -330,22 +342,14 @@ const VKR = () => {
                                     </>
                                     :
                                     <li>
-                                        <label htmlFor="supervisor_review" className={filesListClass('supervisor_review')}>
-                                            <div>Отзыв научного руководителя</div>
-                                            <input className={styles.file_input} required type="file" name="supervisor_review" id="supervisor_review" onChange={event => uploadFile(event, 'supervisor_review')} />
+                                        <label htmlFor="review" className={filesListClass('review')}>
+                                            <div>Рецензия на ВКР (при наличии)</div>
+                                            <input className={styles.file_input} type="file" name="review" id="review" onChange={event => uploadFile(event, 'review')} />
                                             <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                             <CheckBoxIcon className={styles.check_icon} />
                                         </label>
                                     </li>
                                 }
-                                <li>
-                                    <label htmlFor="review" className={filesListClass('review')}>
-                                        <div>Рецензия на ВКР (при наличии)</div>
-                                        <input className={styles.file_input} type="file" name="review" id="review" onChange={event => uploadFile(event, 'review')} />
-                                        <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
-                                        <CheckBoxIcon className={styles.check_icon} />
-                                    </label>
-                                </li>
                                 <li>
                                     <label htmlFor="personal_statement" className={filesListClass('personal_statement')}>
                                         <div>Личное заявление обучающегося о размещении ВКР в ЭБ СурГУ</div>
@@ -354,14 +358,17 @@ const VKR = () => {
                                         <CheckBoxIcon className={styles.check_icon} />
                                     </label>
                                 </li>
-                                <li>
-                                    <label htmlFor="letter_for_placement" className={filesListClass('letter_for_placement')}>
-                                        <div>Письмо о согласии (не согласии) на размещение текста ВКР в ЭБ от базового предприятия/организации, материалы которого (которой) использованы при выполнении ВКР (при наличии)</div>
-                                        <input className={styles.file_input} type="file" name="letter_for_placement" id="letter_for_placement" onChange={event => uploadFile(event, 'letter_for_placement')} />
-                                        <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
-                                        <CheckBoxIcon className={styles.check_icon} />
-                                    </label>
-                                </li>
+                                {typeDiplomа !== "научный доклад об основных результатах подготовленной научно-квалификационной работы (диссертации)"
+                                    &&
+                                    <li>
+                                        <label htmlFor="letter_for_placement" className={filesListClass('letter_for_placement')}>
+                                            <div>Письмо о согласии (не согласии) на размещение текста ВКР в ЭБ от базового предприятия/организации, материалы которого (которой) использованы при выполнении ВКР (при наличии)</div>
+                                            <input className={styles.file_input} type="file" name="letter_for_placement" id="letter_for_placement" onChange={event => uploadFile(event, 'letter_for_placement')} />
+                                            <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
+                                            <CheckBoxIcon className={styles.check_icon} />
+                                        </label>
+                                    </li>
+                                }
                                 {typeDiplomа !== "научный доклад об основных результатах подготовленной научно-квалификационной работы (диссертации)"
                                     ?
                                     <li>
