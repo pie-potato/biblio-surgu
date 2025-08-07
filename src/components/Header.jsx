@@ -75,7 +75,7 @@ export default function Header() {
         <header className={((location === "/") && (window.innerWidth >= 1000)) ? "header absolute" : "header"}>
             <div className={isMobileMenuOpen ? "header_top open" : "header_top"}>
                 <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                    <img src="/media/logo1.png" className="logo" alt="Logo" />
+                    <img src="/media/logo1.png" className="logo" alt="Logo" loading="lazy"/>
                 </Link>
 
                 {windowWidth <= 1510 ? (
