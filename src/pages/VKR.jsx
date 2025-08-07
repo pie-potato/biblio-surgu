@@ -324,17 +324,17 @@ const VKR = () => {
                                     ?
                                     <>
                                         <li>
-                                            <label htmlFor="review" className={filesListClass('review')}>
+                                            <label htmlFor="review1" className={filesListClass('review')}>
                                                 <div>Рецензия 1</div>
-                                                <input className={styles.file_input} required type="file" name="review" id="review" onChange={event => uploadFile(event, 'review')} />
+                                                <input className={styles.file_input} required type="file" name="review1" id="review1" onChange={event => uploadFile(event, 'review1')} />
                                                 <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                                 <CheckBoxIcon className={styles.check_icon} />
                                             </label>
                                         </li>
                                         <li>
-                                            <label htmlFor="review" className={filesListClass('review')}>
+                                            <label htmlFor="review2" className={filesListClass('review')}>
                                                 <div>Рецензия 2</div>
-                                                <input className={styles.file_input} required type="file" name="review" id="review" onChange={event => uploadFile(event, 'review')} />
+                                                <input className={styles.file_input} required type="file" name="review2" id="review2" onChange={event => uploadFile(event, 'review2')} />
                                                 <CheckBoxOutlineBlankIcon className={styles.check_icon_outline} />
                                                 <CheckBoxIcon className={styles.check_icon} />
                                             </label>
